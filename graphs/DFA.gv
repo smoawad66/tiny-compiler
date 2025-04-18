@@ -1,0 +1,56 @@
+digraph DFA {
+    rankdir=LR;
+    node [shape = circle];
+    S0 [shape = point];
+
+    // start state
+    start [label=""];
+    S0 -> start [label="start"];
+#  ----------------------------
+    
+    // if
+    start -> ID1 [label="i"]; ID1 [peripheries=2];
+
+    ID1 -> IF_KW [label="f"];
+    ID1 -> ID1 [label="letter \\{f}, digit"];
+    ID1 -> DD1 [label="symbol"];
+
+    DD1 -> DD1 [label="\".\""];
+    
+    IF_KW [peripheries=2];
+    IF_KW -> DD1 [label="symbol"];
+    IF_KW -> ID1 [label="letter, digit"];
+
+
+
+    // then
+    start -> ID2 [label="t"]; ID2 [peripheries=2];
+    
+    ID2 -> ID3 [label="h"]; ID3 [peripheries=2];
+    ID2 -> ID2 [label="letter \\{h}, digit"];
+    ID2 -> DD2 [label="symbol"];
+
+    ID3 -> ID4 [label="e"]; ID4 [peripheries=2];
+    ID3 -> ID3 [label="letter \\{e}, digit"];
+    ID3 -> DD2 [label="symbol"];
+    
+    ID4 -> THEN_KW [label="n"];
+    ID4 -> ID4 [label="letter \\{n}, digit"];
+    ID4 -> DD2 [label="symbol"];
+
+    DD2 -> DD2 [label="\".\""];
+
+    THEN_KW [peripheries=2];
+    THEN_KW -> DD2 [label="symbol"];
+    THEN_KW -> ID4 [label="letter, digit"];
+
+
+    // // number
+    // start -> NUM1 [label="digit"];
+    // NUM1 [peripheries=2];
+
+    // NUM1 -> NUM1 [label="digit"];
+    // NUM1 -> DD2 [label="letter, symbol"];
+
+    // DD2 -> DD2 [label="\".\""];
+}

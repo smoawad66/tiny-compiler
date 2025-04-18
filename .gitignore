@@ -1,0 +1,5 @@
+code/tiny
+code/Makefile
+code/.*
+code/*.o
+code/moc_*
