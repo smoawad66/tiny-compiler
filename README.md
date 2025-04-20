@@ -34,8 +34,8 @@ This is an implementation of Tiny programming language compiler
 - **Statement Terminator**: `;`
 
 ### Comments and Strings
-- **Comments**: `{[^}].*}` any combination of characters between `{}` except `}`
-- **Strings**: `"[^"].*"` any combination of characters between `""` except `"`
+- **Comments**: `{[^}]*}` any combination of characters between `{}` except `}`
+- **Strings**: `"[^"]*"` any combination of characters between `""` except `"`
 
 ## Complete Regular Expression
 The complete regular expression pattern for Tiny language tokens is:
@@ -49,8 +49,8 @@ The complete regular expression pattern for Tiny language tokens is:
   (|) | 
   := | 
   ; | 
-  {[^}].*} | 
-  "[^"].*"
+  {[^}]*} | 
+  "[^"]*"
 ```
 
 ## Token Categories

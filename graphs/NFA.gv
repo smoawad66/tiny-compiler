@@ -1,171 +1,108 @@
 digraph TinyNFA {
-  rankdir=LR;
-  node [shape=circle, fontsize=10];
-  edge [fontsize=8];
+    rankdir=LR;
+    node [shape=circle];
+    edge [fontsize=15, fontcolor="#0847cf"];
 
-  start [shape=point, width=0.1];
-  start -> S0 [label="Start"];
-  S0 [label=""];
+    S0 [shape=point];
 
-  //identifier
-  S0 -> ID1 [label="ε"];
-  ID1 [label=""];
-  ID1 -> IDF [label="letter, digit"];
-  IDF -> IDF [label="letter, digit"];
-  IDF [label="ID", shape=doublecircle];
+    //start state
+    start [label="", width=1.5, height=1.5];
+    S0 -> start [label="Start"];
 
-  //number
-  S0 -> NUM1 [label="ε"];
-  NUM1 [label=""];
-  NUM1 -> NUMF [label="digit"];
-  NUMF -> NUMF [label="digit"];
-  NUMF [label="NUMBER", shape=doublecircle];
-  
-  
-  
-  //if
-  S0 -> KW_if1 [label="ε"];
-  KW_if1 [label=""];
-  KW_if1 -> KW_if2 [label="i"];
-  KW_if2 [label=""];
-  KW_if2 -> KW_if3 [label="f"];
-  KW_if3 [label="IF_KW", shape=doublecircle];
+    //if
+    start -> KW_if1 [label="ε"]; KW_if1 [label=""];
 
-  //then
-  S0 -> KW_then1 [label="ε"];
-  KW_then1 [label=""];
-  KW_then1 -> KW_then2 [label="t"];
-  KW_then2 [label=""];
-  KW_then2 -> KW_then3 [label="h"];
-  KW_then3 [label=""];
-  KW_then3 -> KW_then4 [label="e"];
-  KW_then4 [label=""];
-  KW_then4 -> KW_then5 [label="n"];
-  KW_then5 [label="THEN_KW", shape=doublecircle];
+    KW_if1 -> KW_if2 [label="if"];
+    KW_if2 [label="IF_KW", shape=doublecircle];
 
-  //else
-  S0 -> KW_else1 [label="ε"];
-  KW_else1 [label=""];
-  KW_else1 -> KW_else2 [label="e"];
-  KW_else2 [label=""];
-  KW_else2 -> KW_else3 [label="l"];
-  KW_else3 [label=""];
-  KW_else3 -> KW_else4 [label="s"];
-  KW_else4 [label=""];
-  KW_else4 -> KW_else5 [label="e"];
-  KW_else5 [label="ELSE_KW", shape=doublecircle];
+    //then
+    start -> KW_then1 [label="ε"]; KW_then1 [label=""];
+    KW_then1 -> KW_then2 [label="then"];
+    KW_then2 [label="THEN_KW", shape=doublecircle];
 
-  //end
-  S0 -> KW_end1 [label="ε"];
-  KW_end1 [label=""];
-  KW_end1 -> KW_end2 [label="e"];
-  KW_end2 [label=""];
-  KW_end2 -> KW_end3 [label="n"];
-  KW_end3 [label=""];
-  KW_end3 -> KW_end4 [label="d"];
-  KW_end4 [label="END_KW", shape=doublecircle];
+    //else
+    start -> KW_else1 [label="ε"]; KW_else1 [label=""];
+    KW_else1 -> KW_else2 [label="end"];
+    KW_else2 [label="ELSE_KW", shape=doublecircle];
 
-  //repeat
-  S0 -> KW_repeat1 [label="ε"];
-  KW_repeat1 [label=""];
-  KW_repeat1 -> KW_repeat2 [label="r"];
-  KW_repeat2 [label=""];
-  KW_repeat2 -> KW_repeat3 [label="e"];
-  KW_repeat3 [label=""];
-  KW_repeat3 -> KW_repeat4 [label="p"];
-  KW_repeat4 [label=""];
-  KW_repeat4 -> KW_repeat5 [label="e"];
-  KW_repeat5 [label=""];
-  KW_repeat5 -> KW_repeat6 [label="a"];
-  KW_repeat6 [label=""];
-  KW_repeat6 -> KW_repeat7 [label="t"];
-  KW_repeat7 [label="REPEAT_KW", shape=doublecircle];
+    //repeat
+    start -> KW_repeat1 [label="ε"]; KW_repeat1 [label=""];
+    KW_repeat1 -> KW_repeat2 [label="repeat"];
+    KW_repeat2 [label="REPEAT_KW", shape=doublecircle];
 
-  //until
-  S0 -> KW_until1 [label="ε"];
-  KW_until1 [label=""];
-  KW_until1 -> KW_until2 [label="u"];
-  KW_until2 [label=""];
-  KW_until2 -> KW_until3 [label="n"];
-  KW_until3 [label=""];
-  KW_until3 -> KW_until4 [label="t"];
-  KW_until4 [label=""];
-  KW_until4 -> KW_until5 [label="i"];
-  KW_until5 [label=""];
-  KW_until5 -> KW_until6 [label="l"];
-  KW_until6 [label="UNTIL_KW", shape=doublecircle];
+    //until
+    start -> KW_until1 [label="ε"]; KW_until1 [label=""];
+    KW_until1 -> KW_until2 [label="until"];
+    KW_until2 [label="UNTIL_KW", shape=doublecircle];
 
-  //read
-  S0 -> KW_read1 [label="ε"];
-  KW_read1 [label=""];
-  KW_read1 -> KW_read2 [label="r"];
-  KW_read2 [label=""];
-  KW_read2 -> KW_read3 [label="e"];
-  KW_read3 [label=""];
-  KW_read3 -> KW_read4 [label="a"];
-  KW_read4 [label=""];
-  KW_read4 -> KW_read5 [label="d"];
-  KW_read5 [label="READ_KW", shape=doublecircle];
+    //read
+    start -> KW_read1 [label="ε"]; KW_read1 [label=""];
+    KW_read1 -> KW_read2 [label="read"];
+    KW_read2 [label="READ_KW", shape=doublecircle];
 
-  //write
-  S0 -> KW_write1 [label="ε"];
-  KW_write1 [label=""];
-  KW_write1 -> KW_write2 [label="w"];
-  KW_write2 [label=""];
-  KW_write2 -> KW_write3 [label="r"];
-  KW_write3 [label=""];
-  KW_write3 -> KW_write4 [label="i"];
-  KW_write4 [label=""];
-  KW_write4 -> KW_write5 [label="t"];
-  KW_write5 [label=""];
-  KW_write5 -> KW_write6 [label="e"];
-  KW_write6 [label="WRITE_KW", shape=doublecircle];
+    //write
+    start -> KW_write1 [label="ε"]; KW_write1 [label=""];
+    KW_write1 -> KW_write2 [label="write"];
+    KW_write2 [label="WRITE_KW", shape=doublecircle];
 
-  //arithmetic
-  ARITHOP [label=""]
-  S0 -> ARITHOP [label="ε"];
-  ARITHOP -> ARITHOPF [label="+, -, *, /"]
-  ARITHOPF [label="ARITHMETIC OP", shape=doublecircle];
+    //end
+    start -> KW_end1 [label="ε"]; KW_end1 [label=""];
+    KW_end1 -> KW_end2 [label="end"];
+    KW_end2 [label="END_KW", shape=doublecircle];
 
- //comparison
-  S0 -> COMPOP [label="ε"];
-  COMPOP -> COMPOPF [label="<, ="];
-  COMPOPF [label="COMPARISON OP", shape=doublecircle];
+    //identifier
+    start -> ID1 [label="ε"];
+    ID1 [label=""];
+    ID1 -> IDF [label="letter, digit"];
+    IDF -> IDF [label="letter, digit"];
+    IDF [label="ID", shape=doublecircle];
 
-  //:=
-  S0 -> ASSIGN1 [label="ε"];
-  ASSIGN1 [label=""];
-  ASSIGN1 -> ASSIGN2 [label=":"];
-  ASSIGN2 [label=""];
-  ASSIGN2 -> ASSIGNF [label="="];
-  ASSIGNF [label="ASSIGNMENT OP", shape=doublecircle];
+    //number
+    start -> NUM1 [label="ε"];
+    NUM1 [label=""];
+    NUM1 -> NUMF [label="digit"];
+    NUMF -> NUMF [label="digit"];
+    NUMF [label="NUMBER", shape=doublecircle];
 
-  //()
-  S0 -> SEMICOLON [label="ε"];
-  SEMICOLON -> SEMIF [label=";"];
-  SEMIF [label="SEMICOLON", shape=doublecircle];
+    //arithmetic
+    ARITHOP [label=""]
+    start -> ARITHOP [label="ε"];
+    ARITHOP -> ARITHOPF [label="+, -, *, /"]
+    ARITHOPF [label="ARITHMETIC OP", shape=doublecircle];
 
-  S0 -> PAREN [label="ε"];
-  PAREN -> PARENF [label="(, )"];
-  PARENF [label="PARENTHESIS", shape=doublecircle];
+    //comparison
+    start -> COMPOP [label="ε"]; COMPOP [label=""];
+    COMPOP -> COMPOPF [label="<, ="];
+    COMPOPF [label="COMPARISON OP", shape=doublecircle, width=1.5, height=1.5];
 
-  //comments
-  S0 -> COMMENT [label="ε"];
-  COMMENT -> COMMENT_BODY [label="{"];
-  COMMENT_BODY [label=""];
-  COMMENT_BODY -> COMMENT_END [label="\".\""];
-  COMMENT_END [label=""];
-  COMMENT_END -> COMMENTF [label="}"];
-  COMMENTF [label="COMMENT", shape=doublecircle];
+    //assignement
+    start -> ASSIGN1 [label="ε"];ASSIGN1 [label=""];
+    ASSIGN1 -> ASSIGN2 [label=":"];
+    ASSIGN2 -> ASSIGNF [label="="]; ASSIGN2 [label=""];
+    ASSIGNF [label="ASSIGNMENT OP", shape=doublecircle, width=1.5, height=1.5];
 
-  //strings
-  S0 -> STRING1 [label="ε"];
-  STRING1 [label=""];
-  STRING1 -> STRING2 [label="\""];
-  STRING2 [label=""];
-  STRING2 -> STRING3 [label="\".\""];
-  STRING3 [label=""];
-  STRING3 -> STRINGF [label="\""];
-  STRINGF [label="STRING", shape=doublecircle];
+    //parenthesis
+    start -> PAREN [label="ε"]; PAREN [label=""];
+    PAREN -> PARENF [label="(, )"];
+    PARENF [label="PARENTHESIS", shape=doublecircle];
+
+    // semicolon
+    start -> SEMICOLON [label="ε"]; SEMICOLON [label=""];
+    SEMICOLON -> SEMIF [label=";"];
+    SEMIF [label="SEMICOLON", shape=doublecircle];
+
+    //comments
+    start -> COMMENT [label="ε"]; COMMENT [label=""];
+    COMMENT -> COMMENT_BODY [label="{"];COMMENT_BODY [label=""];
+    COMMENT_BODY -> COMMENT_BODY [label="[^}]"];
+    COMMENT_BODY -> COMMENTF [label="}"];
+    COMMENTF [label="COMMENT", shape=doublecircle];
+
+    //strings
+    start -> STRING1 [label="ε"]; STRING1 [label=""];
+    STRING1 -> STRING2 [label="\""]; STRING2 [label=""];
+    STRING2 -> STRING2 [label="[^\"]"];
+    STRING2 -> STRINGF [label="\""];
+    STRINGF [label="STRING", shape=doublecircle];
 }
 
