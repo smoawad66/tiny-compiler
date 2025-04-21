@@ -203,15 +203,19 @@ digraph TinyDFA {
     start -> ID36 [label="e"]; ID36 [peripheries=2];
 
     ID36 -> ID37 [label="n"]; ID37 [peripheries=2];
-    ID36 -> ID39 [label="letter && [^n], digit"];
+    ID36 -> ID41 [label="letter && [^n], digit"];
     ID36 -> DD14 [label="symbol"];
 
     ID37 -> END_KW [label="d"];
     ID37 -> ID39 [label="letter && [^d], digit"];
     ID37 -> DD14 [label="symbol"];
 
+
     ID39 -> ID39 [label="letter, digit"]; ID39 [peripheries=2];
     ID39 -> DD15 [label="symbol"];
+    
+    ID41 -> ID41 [label="letter, digit"]; ID41 [peripheries=2];
+    ID41 -> DD15 [label="symbol"];
 
     END_KW [peripheries=2];
     END_KW -> DD15 [label="symbol"];
@@ -233,5 +237,49 @@ digraph TinyDFA {
     start -> NUM [label="digit"]; NUM [peripheries=2];
     NUM -> NUM [label="digit"];
     NUM -> DD16 [label="letter, symbol"];
+
+
+    //arithmetic
+    start -> ARITH [label="+, -, *, /"] ; ARITH[peripheries=2];
+    ARITH -> DD16 [label="\".\""];
+
+    //comparison
+    start -> COMP [label ="=, <"]; COMP[peripheries=2];
+    COMP -> DD16 [label="\".\""];
+    
+
+    
+    //assignment
+    start -> ASSIGN [label=":"]; ASSIGN[label=""];
+    ASSIGN -> ASSIGNMENT [label="="]; ASSIGNMENT[peripheries=2];
+    ASSIGN -> DD17 [label="\".\""];
+    
+    ASSIGNMENT -> DD17 [label="\".\""];
+
+    DD17 -> DD17 [label="\".\""];
+
+    
+    //parensthesis
+    start -> PAREN [label="(, )"]; PAREN[peripheries=2];
+    PAREN -> DD17 [label="\".\""];
+
+    //semicolon
+    start -> SEMICOLON [label=";"]; SEMICOLON[peripheries=2];
+    SEMICOLON -> DD17 [label="\".\""];
+    
+    
+    //string
+    start -> S1 [label="\""]; S1[label=""];
+    S1 -> S1 [label="[^\"]"]; S2[label=""];
+    S1 -> S2 [label="\""] ; S2[peripheries=2, label="STRING"];
+    S2 -> DD18 [label="\".\""];
+
+    //comment
+    start -> C1 [label="{"]; C1[label=""];
+    C1 -> C1 [label="[^}]"]; C2[label=""];
+    C1 -> C2 [label="}"] ; C2[peripheries=2, label="COMMENT"];
+    C2 -> DD18 [label="\".\""];
+
+    DD18 -> DD18 [label="\".\""];
 
 }

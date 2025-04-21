@@ -22,6 +22,8 @@ void MainWindow::setupUI()
     mainLayout->setContentsMargins(10, 10, 10, 10);
     mainLayout->setSpacing(15);
 
+    setStyleSheet("background-color: #24283B");
+
     codeEditor = new QTextEdit(this);
     codeEditor->setFont(QFont("Consolas"));
     codeEditor->setStyleSheet(
