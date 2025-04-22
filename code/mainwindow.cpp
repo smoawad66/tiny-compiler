@@ -170,13 +170,13 @@ vector<pair<string, string>> MainWindow::tokenize(const string &s)
 
         else {
             if(s[i] == '{') {
-                i++;
+                t="{", i++;
                 while(s[i] != '}' && i < l-1)t+=s[i++];
-                v.eb(t, s[i] == '}' ? "Comment" : "Unterminated comment");
+                s[i] == '}' ? v.eb(t+"}", "Comment") : v.eb(t, "Unterminated Comment");
             }
 
             else if (s[i]=='"') {
-                t='"', i++;
+                t="\"", i++;
                 while(s[i]!='"' && i < l-1)t+=s[i++];
                 s[i] == '"' ? v.eb(t+"\"", "String") : v.eb(t, "Unterminated string");
             }
@@ -190,6 +190,7 @@ vector<pair<string, string>> MainWindow::tokenize(const string &s)
             else if(isComparison(s[i])) v.eb(string(1, s[i]), "Comparison operator");
             else if(isParenthesis(s[i])) v.eb(string(1, s[i]), "Parenthesis");
             else if(s[i]==';') v.eb(";", "Semicolon");
+            else if(s[i]==',') v.eb(",", "Comma");
             else if (s[i] == ' ') continue;
             else v.eb(string(1, s[i]), "Unknown");
 

@@ -111,7 +111,7 @@ digraph TinyNFA {
     //identifier
     start -> ID1 [label="ε"];
     ID1 [label=""];
-    ID1 -> IDF [label="letter, digit"];
+    ID1 -> IDF [label="letter"];
     IDF -> IDF [label="letter, digit"];
     IDF [label="ID", shape=doublecircle];
 
@@ -126,28 +126,33 @@ digraph TinyNFA {
     ARITHOP [label=""]
     start -> ARITHOP [label="ε"];
     ARITHOP -> ARITHOPF [label="+, -, *, /"]
-    ARITHOPF [label="ARITHMETIC OP", shape=doublecircle];
+    ARITHOPF [label="ARITHMETIC", shape=doublecircle];
 
     //comparison
     start -> COMPOP [label="ε"]; COMPOP [label=""];
     COMPOP -> COMPOPF [label="<, ="];
-    COMPOPF [label="COMPARISON OP", shape=doublecircle, width=1.5, height=1.5];
+    COMPOPF [label="COMPARISON", shape=doublecircle, width=1.5, height=1.5];
 
     //assignement
     start -> ASSIGN1 [label="ε"];ASSIGN1 [label=""];
     ASSIGN1 -> ASSIGN2 [label=":"];
     ASSIGN2 -> ASSIGNF [label="="]; ASSIGN2 [label=""];
-    ASSIGNF [label="ASSIGNMENT OP", shape=doublecircle, width=1.5, height=1.5];
+    ASSIGNF [label="ASSIGNMENT", shape=doublecircle, width=1.5, height=1.5];
 
-    //parenthesis
-    start -> PAREN [label="ε"]; PAREN [label=""];
-    PAREN -> PARENF [label="(, )"];
-    PARENF [label="PARENTHESIS", shape=doublecircle];
+    //punctuation
+    start -> PUNCTUATION [label="ε"]; PUNCTUATION [label=""];
+    PUNCTUATION -> PUNCTUATIONF [label="(, )"];
+    PUNCTUATIONF [label="PUNCTUATION", shape=doublecircle];
 
     // semicolon
     start -> SEMICOLON [label="ε"]; SEMICOLON [label=""];
     SEMICOLON -> SEMIF [label=";"];
     SEMIF [label="SEMICOLON", shape=doublecircle];
+    
+    //comma
+    start -> COMMA [label="ε"]; COMMA [label=""];
+    COMMA -> COMMAF [label=","];
+    COMMAF [label="COMMA", shape=doublecircle];
 
     //comments
     start -> COMMENT [label="ε"]; COMMENT [label=""];

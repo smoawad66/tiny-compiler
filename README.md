@@ -6,6 +6,7 @@ This is an implementation of Tiny programming language compiler
 ## Character Classes
 - **Digit**: `[0-9]`
 - **Letter**: `[a-zA-Z]`
+- **Symbol**: `+ - * / < = ( ) ; ,`
 - **Any character**: `.`
 
 ## Token Types
@@ -32,6 +33,7 @@ This is an implementation of Tiny programming language compiler
 - **Parentheses**: `(`,`)`
 - **Assignment Operator**: `:=`
 - **Statement Terminator**: `;`
+- **Comma**: `,`
 
 ### Comments and Strings
 - **Comments**: `{[^}]*}` any combination of characters between `{}` except `}`
@@ -49,6 +51,7 @@ The complete regular expression pattern for Tiny language tokens is:
   (|) | 
   := | 
   ; | 
+  , |
   {[^}]*} | 
   "[^"]*"
 ```

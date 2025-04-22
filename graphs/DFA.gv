@@ -9,11 +9,17 @@ digraph TinyDFA {
     start [label="", width=2, height=2];
     S0 -> start [label="start"];
 
+    { rank=same; S0; start; }
+
+    ranksep=1.0;
+    nodesep=0.5;
+
+
     //if
-    start -> ID1 [label="i"]; ID1 [peripheries=2];
+    start -> ID1 [label="i"]; ID1 [peripheries=2, label="ID"];
 
     ID1 -> IF_KW [label="f"];
-    ID1 -> ID2 [label="letter && [^f], digit"]; ID2 [peripheries=2];
+    ID1 -> ID2 [label="letter && [^f], digit"]; ID2 [peripheries=2, label="ID"];
     ID1 -> DD1 [label="symbol"];
 
     ID2 -> ID2 [label="letter, digit"];
@@ -27,18 +33,18 @@ digraph TinyDFA {
 
 
     //then
-    start -> ID3 [label="t"]; ID3 [peripheries=2];
+    start -> ID3 [label="t"]; ID3 [peripheries=2, label="ID"];
     
-    ID3 -> ID4 [label="h"]; ID4 [peripheries=2];
+    ID3 -> ID4 [label="h"]; ID4 [peripheries=2, label="ID"];
     ID3 -> ID6 [label="letter && [^h], digit"]; 
     ID3 -> DD3 [label="symbol"];
 
-    ID4 -> ID5 [label="e"]; ID5 [peripheries=2];
+    ID4 -> ID5 [label="e"]; ID5 [peripheries=2, label="ID"];
     ID4 -> ID6 [label="letter && [^e], digit"];
     ID4 -> DD3 [label="symbol"];
 
     ID5 -> THEN_KW [label="n"]; 
-    ID5 -> ID6 [label="letter && [^n], digit"]; ID6 [peripheries=2];
+    ID5 -> ID6 [label="letter && [^n], digit"]; ID6 [peripheries=2, label="ID"];
     ID5 -> DD3 [label="symbol"];
     
     ID6 -> ID6 [label="letter, digit"];
@@ -54,13 +60,13 @@ digraph TinyDFA {
 
 
     //else
-    start -> ID7 [label="e"]; ID7 [peripheries=2];
+    start -> ID7 [label="e"]; ID7 [peripheries=2, label="ID"];
 
-    ID7 -> ID8 [label="l"]; ID8 [peripheries=2];
+    ID7 -> ID8 [label="l"]; ID8 [peripheries=2, label="ID"];
     ID7 -> ID12 [label="letter && [^l], digit"];
     ID7 -> DD4 [label="symbol"];
 
-    ID8 -> ID9 [label="s"]; ID9 [peripheries=2];
+    ID8 -> ID9 [label="s"]; ID9 [peripheries=2, label="ID"];
     ID8 -> ID12 [label="letter && [^s], digit"];
     ID8 -> DD4 [label="symbol"];
 
@@ -68,7 +74,7 @@ digraph TinyDFA {
     ID9 -> ID12 [label="letter && [^e], digit"];
     ID9 -> DD4 [label="symbol"];
 
-    ID12 -> ID12 [label="letter, digit"]; ID12 [peripheries=2];
+    ID12 -> ID12 [label="letter, digit"]; ID12 [peripheries=2, label="ID"];
     ID12 -> DD5 [label="symbol"];
 
     ELSE_KW [peripheries=2];
@@ -80,29 +86,29 @@ digraph TinyDFA {
 
 
     //repeat
-    start -> ID13 [label="r"]; ID13 [peripheries=2];
+    start -> ID13 [label="r"]; ID13 [peripheries=2, label="ID"];
 
-    ID13 -> ID14 [label="e"]; ID14 [peripheries=2];
+    ID13 -> ID14 [label="e"]; ID14 [peripheries=2, label="ID"];
     ID13 -> ID18 [label="letter && [^e], digit"];
     ID13 -> DD6 [label="symbol"];
 
-    ID14 -> ID15 [label="p"]; ID15 [peripheries=2];
+    ID14 -> ID15 [label="p"]; ID15 [peripheries=2, label="ID"];
     ID14 -> ID18 [label="letter && [^p], digit"];
     ID14 -> DD6 [label="symbol"];
 
-    ID15 -> ID16 [label="e"]; ID16 [peripheries=2];
+    ID15 -> ID16 [label="e"]; ID16 [peripheries=2, label="ID"];
     ID15 -> ID18 [label="letter && [^e], digit"];
     ID15 -> DD6 [label="symbol"];
 
-    ID16 -> ID17 [label="a"]; ID17 [peripheries=2];
+    ID16 -> ID17 [label="a"]; ID17 [peripheries=2, label="ID"];
     ID16 -> ID18 [label="letter && [^a], digit"];
     ID16 -> DD7 [label="symbol"];
 
     ID17 -> REPEAT_KW [label="t"]; 
-    ID17 -> ID18 [label="letter && [^t], digit"]; ID18 [peripheries=2];
+    ID17 -> ID18 [label="letter && [^t], digit"]; ID18 [peripheries=2, label="ID"];
     ID17 -> DD7 [label="symbol"];
 
-    ID18 -> ID18 [label="letter, digit"]; ID18 [peripheries=2];
+    ID18 -> ID18 [label="letter, digit"]; ID18 [peripheries=2, label="ID"];
     ID18 -> DD7 [label="symbol"];
 
     REPEAT_KW [peripheries=2];
@@ -114,26 +120,29 @@ digraph TinyDFA {
 
 
     //until
-    start -> ID19 [label="u"]; ID19 [peripheries=2];
+    start -> ID19 [label="u"]; ID19 [peripheries=2, label="ID"];
 
-    ID19 -> ID20 [label="n"]; ID20 [peripheries=2];
+    ID19 -> ID20 [label="n"]; ID20 [peripheries=2, label="ID"];
     ID19 -> ID24 [label="letter && [^n], digit"];
     ID19 -> DD8 [label="symbol"];
 
-    ID20 -> ID21 [label="t"]; ID21 [peripheries=2];
+    ID20 -> ID21 [label="t"]; ID21 [peripheries=2, label="ID"];
     ID20 -> ID24 [label="letter && [^t], digit"];
     ID20 -> DD8 [label="symbol"];
 
-    ID21 -> ID22 [label="i"]; ID22 [peripheries=2];
-    ID21 -> ID24 [label="letter && [^i], digit"];
+    ID21 -> ID22 [label="i"]; ID22 [peripheries=2, label="ID"];
+    ID21 -> ID42 [label="letter && [^i], digit"];
     ID21 -> DD8 [label="symbol"];
 
     ID22 -> UNTIL_KW [label="l"];
     ID22 -> ID24 [label="letter && [^l], digit"];
     ID22 -> DD9 [label="symbol"];
 
-    ID24 -> ID24 [label="letter, digit"]; ID24 [peripheries=2];
+    ID24 -> ID24 [label="letter, digit"]; ID24 [peripheries=2, label="ID"];
     ID24 -> DD9 [label="symbol"];
+    
+    ID42 -> ID42 [label="letter, digit"]; ID42 [peripheries=2, label="ID"];
+    ID42 -> DD9 [label="symbol"];
 
     UNTIL_KW [peripheries=2];
     UNTIL_KW -> DD9 [label="symbol"];
@@ -144,13 +153,13 @@ digraph TinyDFA {
 
 
     //read
-    start -> ID25 [label="r"]; ID25 [peripheries=2];
+    start -> ID25 [label="r"]; ID25 [peripheries=2, label="ID"];
 
-    ID25 -> ID26 [label="e"]; ID26 [peripheries=2];
+    ID25 -> ID26 [label="e"]; ID26 [peripheries=2, label="ID"];
     ID25 -> ID29 [label="letter && [^e], digit"];
     ID25 -> DD10 [label="symbol"];
 
-    ID26 -> ID27 [label="a"]; ID27 [peripheries=2];
+    ID26 -> ID27 [label="a"]; ID27 [peripheries=2, label="ID"];
     ID26 -> ID29 [label="letter && [^a], digit"];
     ID26 -> DD10 [label="symbol"];
 
@@ -158,7 +167,7 @@ digraph TinyDFA {
     ID27 -> ID29 [label="letter && [^d], digit"];
     ID27 -> DD10 [label="symbol"];
 
-    ID29 -> ID29 [label="letter, digit"]; ID29 [peripheries=2];
+    ID29 -> ID29 [label="letter, digit"]; ID29 [peripheries=2, label="ID"];
     ID29 -> DD11 [label="symbol"];
 
     READ_KW [peripheries=2];
@@ -170,17 +179,17 @@ digraph TinyDFA {
 
 
     //write
-    start -> ID30 [label="w"]; ID30 [peripheries=2];
+    start -> ID30 [label="w"]; ID30 [peripheries=2, label="ID"];
 
-    ID30 -> ID31 [label="r"]; ID31 [peripheries=2];
+    ID30 -> ID31 [label="r"]; ID31 [peripheries=2, label="ID"];
     ID30 -> ID35 [label="letter && [^r], digit"];
     ID30 -> DD12 [label="symbol"];
 
-    ID31 -> ID32 [label="i"]; ID32 [peripheries=2];
+    ID31 -> ID32 [label="i"]; ID32 [peripheries=2, label="ID"];
     ID31 -> ID35 [label="letter && [^i], digit"];
     ID31 -> DD12 [label="symbol"];
 
-    ID32 -> ID33 [label="t"]; ID33 [peripheries=2];
+    ID32 -> ID33 [label="t"]; ID33 [peripheries=2, label="ID"];
     ID32 -> ID35 [label="letter && [^t], digit"];
     ID32 -> DD12 [label="symbol"];
 
@@ -188,7 +197,7 @@ digraph TinyDFA {
     ID33 -> ID35 [label="letter && [^e], digit"];
     ID33 -> DD13 [label="symbol"];
 
-    ID35 -> ID35 [label="letter, digit"]; ID35 [peripheries=2];
+    ID35 -> ID35 [label="letter, digit"]; ID35 [peripheries=2, label="ID"];
     ID35 -> DD13 [label="symbol"];
 
     WRITE_KW [peripheries=2];
@@ -200,9 +209,9 @@ digraph TinyDFA {
 
 
     //end
-    start -> ID36 [label="e"]; ID36 [peripheries=2];
+    start -> ID36 [label="e"]; ID36 [peripheries=2, label="ID"];
 
-    ID36 -> ID37 [label="n"]; ID37 [peripheries=2];
+    ID36 -> ID37 [label="n"]; ID37 [peripheries=2, label="ID"];
     ID36 -> ID41 [label="letter && [^n], digit"];
     ID36 -> DD14 [label="symbol"];
 
@@ -211,10 +220,10 @@ digraph TinyDFA {
     ID37 -> DD14 [label="symbol"];
 
 
-    ID39 -> ID39 [label="letter, digit"]; ID39 [peripheries=2];
+    ID39 -> ID39 [label="letter, digit"]; ID39 [peripheries=2, label="ID"];
     ID39 -> DD15 [label="symbol"];
     
-    ID41 -> ID41 [label="letter, digit"]; ID41 [peripheries=2];
+    ID41 -> ID41 [label="letter, digit"]; ID41 [peripheries=2, label="ID"];
     ID41 -> DD15 [label="symbol"];
 
     END_KW [peripheries=2];
@@ -225,8 +234,12 @@ digraph TinyDFA {
     DD15 -> DD15 [label="\".\""];
 
 
+    start -> spacer1 [style=invis]; spacer1 [style=invis];
+    spacer1 -> ID41 [style=invis];
+
+
     //identifier
-    start -> ID40 [label="letter && [^iteruw]"]; ID40 [peripheries=2];
+    start -> ID40 [label="letter && [^iteruw]"]; ID40 [peripheries=2, label="ID"];
     ID40 -> ID40 [label="letter, digit"];
     ID40 -> DD16 [label="symbol"];
 
@@ -240,15 +253,14 @@ digraph TinyDFA {
 
 
     //arithmetic
-    start -> ARITH [label="+, -, *, /"] ; ARITH[peripheries=2];
-    ARITH -> DD16 [label="\".\""];
+    start -> ARITHMETIC [label="+, -, *, /"] ; ARITHMETIC[peripheries=2];
+    ARITHMETIC -> DD17 [label="\".\""];
 
     //comparison
-    start -> COMP [label ="=, <"]; COMP[peripheries=2];
-    COMP -> DD16 [label="\".\""];
+    start -> COMPARISON [label ="=, <"]; COMPARISON[peripheries=2];
+    COMPARISON -> DD17 [label="\".\""];
     
 
-    
     //assignment
     start -> ASSIGN [label=":"]; ASSIGN[label=""];
     ASSIGN -> ASSIGNMENT [label="="]; ASSIGNMENT[peripheries=2];
@@ -257,15 +269,18 @@ digraph TinyDFA {
     ASSIGNMENT -> DD17 [label="\".\""];
 
     DD17 -> DD17 [label="\".\""];
-
     
-    //parensthesis
-    start -> PAREN [label="(, )"]; PAREN[peripheries=2];
-    PAREN -> DD17 [label="\".\""];
+    //punctuation
+    start -> PUNCTUATION [label="(, )"]; PUNCTUATION[peripheries=2];
+    PUNCTUATION -> DD18 [label="\".\""];
 
     //semicolon
     start -> SEMICOLON [label=";"]; SEMICOLON[peripheries=2];
-    SEMICOLON -> DD17 [label="\".\""];
+    SEMICOLON -> DD18 [label="\".\""];
+    
+    //comma
+    start -> COMMA [label=","]; COMMA[peripheries=2];
+    COMMA -> DD18 [label="\".\""];
     
     
     //string
@@ -281,5 +296,11 @@ digraph TinyDFA {
     C2 -> DD18 [label="\".\""];
 
     DD18 -> DD18 [label="\".\""];
+
+    DD1[label="DD"];DD2[label="DD"];DD3[label="DD"];DD4[label="DD"];
+    DD5[label="DD"];DD6[label="DD"];DD7[label="DD"];DD8[label="DD"];
+    DD9[label="DD"];DD10[label="DD"];DD11[label="DD"];DD12[label="DD"];
+    DD13[label="DD"];DD14[label="DD"];DD15[label="DD"];DD16[label="DD"];
+    DD17[label="DD"];DD18[label="DD"];
 
 }
