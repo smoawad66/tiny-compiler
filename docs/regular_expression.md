@@ -1,7 +1,4 @@
-# Tiny Language
-
-## Overview
-This is an implementation of Tiny programming language compiler
+# Tiny Language Regular Expression
 
 ## Character Classes
 - **Digit**: `[0-9]`
